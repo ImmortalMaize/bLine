@@ -12,7 +12,7 @@ export const Latitude = (props: {
         strokeWidth: "2px",
         strokeLinecap: "round",
         stroke: "white",
-        strokeOpacity: (index/octaves) ** 2
+        strokeOpacity: (index/octaves) * 0.4
       }}></line>
     })}
   </g>

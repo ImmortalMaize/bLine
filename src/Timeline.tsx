@@ -5,6 +5,7 @@ import Channel from "./VizComps/Channel"
 import { useMemo } from "react"
 import { Shells } from "./types/shells"
 import chroma from "chroma-js"
+import layerChannels from "./layerChannels"
 
 export const Timeline = (props: {
   beep: any,
@@ -53,6 +54,27 @@ export const Timeline = (props: {
   const keyHeight: number = octaveHeight / 12
   const min = Math.min(...pitches)
 
+  const matrix = useMemo(() => pitchChannels.map(channel => channel.sequence), [])
+  const matrixPitches = useMemo(() => {
+    const substantiatedChannels = pitchChannels.map((channel: any) => channel.patterns.map((pattern: any) => pattern.notes.flatMap((note: any) => note.pitches)))
+    const sequenced = matrix.map((sequence, index) => {
+      const channel = substantiatedChannels[index]
+      return sequence.map((cell: any) => channel[cell-1])
+    })
+    console.log(sequenced)
+    const minNMax: Array<[number, number]> = []
+
+    for (let i = 0; i < bars; i++) {
+      const column: Array<number> = []
+      sequenced.forEach(sequence => {
+        column.push(sequence[i])
+      })
+      const processedColumn = column.filter(ting => ting).flat()
+      minNMax.push([Math.min(...processedColumn), Math.max(...processedColumn)])
+    }
+    return minNMax
+  }, [])
+
   const pitchShell: Shells.Pitch = {
     pitchChannels,
     pitches,
@@ -61,6 +83,8 @@ export const Timeline = (props: {
     keyHeight,
     min
   }
+
+  const layeredChannels = useMemo(() => layerChannels(pitchChannels, [3, 2, 4, 1, 0]), [])
 
   const framesPerMinute = fps * 60
   const { beatsPerMinute, beatsPerBar } = beep
@@ -76,21 +100,19 @@ export const Timeline = (props: {
     framesPerTick,
   }
 
-  const length: number = barWidth * bars
-  const position: number = interpolate(frame, [0, duration], [0, -length])
+  const beepLength: number = barWidth * bars
+  const timelineLength: number = barWidth * (bars + 2)
+  const position: number = interpolate(frame, [0, duration], [0, -beepLength])
 
   return <div id="distanceline-container" style={{
     width: "100%",
     height: "100%",
     zIndex: 5
   }}>
-    <span style={{
-      color: "white"
-    }}>{octaves}</span>
     <svg id="timeline" style={{
       "position": "absolute",
       "height": height,
-      "width": length,
+      "width": timelineLength,
       "left": position,
       "bottom": 0
     }}>
@@ -104,14 +126,20 @@ export const Timeline = (props: {
           </filter>
         </filter>
       </defs>
-      <Longitude width={barWidth} height={height} distances={bars + 2} />
-      <Latitude width={length} height={height} octaves={octaves} />
-      {pitchChannels.map((channel: any, index: number) => <Channel
+      {useMemo(() => {
+      return <Longitude keyHeight={keyHeight} width={barWidth} height={height} distances={bars + 2} ranges={matrixPitches} min={min} timeShell={timeShell}/>
+      } , [])}
+      <Latitude width={timelineLength} height={height} octaves={octaves} />
+      {layeredChannels.map((channel: any, index: number) => <Channel
         settings={settings}
         timeShell={timeShell}
         distanceShell={distanceShell}
         channel={channel}
-        pitchShell={pitchShell} stroke={colors((index + 1) / pitchChannels.length)} id={"channel-" + index}
+        pitchShell={pitchShell} stroke={colors(
+          index % 2 === 0 ?
+          index / (pitchChannels.length - 1) :
+          1 - (index/pitchChannels.length)
+        )} id={"channel-" + index}
       />)}
     </svg>
   </div>

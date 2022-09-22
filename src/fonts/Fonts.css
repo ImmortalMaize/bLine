@@ -1,0 +1,14 @@
+@font-face {
+  src: url("./DMSans-Regular.ttf");
+  font-family: "DM Sans";
+}
+
+@font-face {
+  src: url("./DMSans-Bold.ttf");
+  font-family: "DM Sans Bold";
+}
+
+@font-face {
+  src: url("./DMSans-Medium.ttf");
+  font-family: "DM Sans Medium";
+}

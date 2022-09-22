@@ -1,7 +1,7 @@
 import { Black } from "./Background";
 import { Timeline } from "./Timeline";
-import KUEBIKO from "./beepbox/KUEBIKO.json"
-import KUEBIKOwav from "./beepbox/KUEBIKO.wav"
+import json from "./beepbox/KUEBIKO.json"
+import wav from "./beepbox/KUEBIKO.wav"
 import { useCurrentFrame, useVideoConfig, Audio } from "remotion";
 
 export const MyComposition = () => {
@@ -9,13 +9,13 @@ export const MyComposition = () => {
   const frame = useCurrentFrame()
   
   const framesPerMinute = fps * 60
-  const { beatsPerMinute, beatsPerBar } = KUEBIKO
+  const { beatsPerMinute, beatsPerBar } = json
   const framesPerBeat = framesPerMinute/beatsPerMinute
-  const length = KUEBIKO.channels[0].sequence.length
+  const length = json.channels[0].sequence.length
   const duration = framesPerBeat * beatsPerBar * length
 
   return <><Black />
-    <Audio src={KUEBIKOwav} startFrom={0}></Audio>
-    <Timeline beep={KUEBIKO} width={width} height={height} frame={frame} duration={duration} gradient={["#ffff00","#00ffff", "#ff00ff"]} mode={"linear"}/>
+    <Audio src={wav} startFrom={0}></Audio>
+    <Timeline beep={json} width={width} height={height} frame={frame} duration={duration} gradient={["#0000ff","#ff00ff","#ff0000"]} mode={"linear"}/>
   </>
 };
