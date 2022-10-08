@@ -1,7 +1,7 @@
 import { Black } from "./Background";
-import { Timeline } from "./Timeline";
-import json from "./beepbox/KUEBIKO.json"
-import wav from "./beepbox/KUEBIKO.wav"
+import Timeline from "./VizComps/Timeline";
+import json from "./beepbox/Ive hit rock bottom and Im at the lowest point in my life but Im trying to be optimistic..json"
+import wav from "./beepbox/Ive hit rock bottom and Im at the lowest point in my life but Im trying to be optimistic..wav"
 import { useCurrentFrame, useVideoConfig, Audio } from "remotion";
 
 export const MyComposition = () => {
@@ -16,6 +16,6 @@ export const MyComposition = () => {
 
   return <><Black />
     <Audio src={wav} startFrom={0}></Audio>
-    <Timeline beep={json} width={width} height={height} frame={frame} duration={duration} gradient={["#0000ff","#ff00ff","#ff0000"]} mode={"linear"}/>
+    <Timeline beep={json} width={width} height={height} frame={frame} duration={duration} gradient={["#03fce3","#fcbe03"]} mode={"linear"}/>
   </>
 };

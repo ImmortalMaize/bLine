@@ -1,4 +1,4 @@
-import Pattern from "../Pattern"
+import PitchPattern from "../PitchPattern"
 import { Color, distance } from "chroma-js"
 import { useCurrentFrame } from 'remotion';
 import { Shells } from "../../types/shells";
@@ -30,7 +30,7 @@ export default (props: {
       const time = index * framesPerBar
       const aheadTime = (index+3) * framesPerBar
       const behindTime = (index-2) * framesPerBar
-      if (frame >= behindTime && frame <= aheadTime) return <Pattern
+      if (frame >= behindTime && frame <= aheadTime) return <PitchPattern
         stroke={stroke}
         settings={settings} distanceShell={distanceShell} timeShell={timeShell} pitchShell={pitchShell}
         distance={(index * barWidth) + weight} time={time} pattern={patterns[num]} name={"bar-" + index}

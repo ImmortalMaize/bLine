@@ -40,6 +40,15 @@ export default (props: {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp"
         }))
+        .saturate(interpolate(frame, [
+          time - 5, ...points.map((point: any) => time + (point.tick - points[0].tick) * framesPerTick), time + ((points[points.length - 1].tick - points[0].tick) * framesPerTick) + 10
+        ], [
+          0, ...points.map((point: any) => (point.volume / 100) * 1), 0
+        ],
+          {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp"
+          }))
         .desaturate(interpolate(
           frame, [
               time + framesPerBar,
@@ -67,6 +76,16 @@ export default (props: {
       extrapolateRight: "clamp",
       easing: Easing.bezier(1,0,0,1)
     })
+    const interpolateBlur = interpolate(
+      frame, [
+          time,
+          time + framesPerBar*2.5
+      ],
+      [0, 3], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp"
+      }
+    )
 
   return <>
     {
@@ -80,7 +99,7 @@ export default (props: {
 
           const easing = points[1].tick - points[0].tick >= ticksPerBar / 4 ? Easing.linear : Easing.bezier(1, 0, 0, 1)
           return <g name={"note-" + index + "-pitch-" + ind} opacity={interpolateOpacity}>
-            <line x1={distance} y1={p} x2={endpoint} y2={p} stroke={color} strokeWidth={keyHeight} style={{ strokeLinecap: "round", strokeDasharray: "100% 200%", strokeDashoffset: interpolateOffset + "%"}} />
+            <line x1={distance} y1={p} x2={endpoint} y2={p} stroke={color} strokeWidth={keyHeight} style={{ strokeLinecap: "round", strokeDasharray: "100% 200%", strokeDashoffset: interpolateOffset + "%", filter: "blur(" + interpolateBlur + "px)"}} />
             <circle cx={
               interpolate(frame, [time, deadline], [distance, endpoint], {
                 extrapolateLeft: "clamp",
@@ -143,7 +162,7 @@ export default (props: {
           const pitchBends: Array<number> = points.map((point: any, index: number) => p - (point.pitchBend * keyHeight))
 
           return <g name={"note-" + index + "-pitch-" + ind} opacity={interpolateOpacity}>
-            <path d={path} stroke={color} strokeWidth={keyHeight} style={{ strokeLinecap: "round", strokeLinejoin: "round", overflow: "visible", fill: "none", strokeDasharray: "100% 200%", strokeDashoffset: interpolateOffset + "%" }} />
+            <path d={path} stroke={color} strokeWidth={keyHeight} style={{ strokeLinecap: "round", strokeLinejoin: "round", overflow: "visible", fill: "none", strokeDasharray: "100% 200%", strokeDashoffset: interpolateOffset + "%", filter: "blur(" + interpolateBlur + "px)" }} />
             <circle cx={interpolate(frame, timeTicks, distanceTicks, {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp"

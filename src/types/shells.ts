@@ -4,7 +4,6 @@ export namespace Shells {
   export interface Settings {
     beep: any,
     width: number,
-    height: number,
     duration: number,
     frame: number,
     gradient: Array<string>,
@@ -13,6 +12,7 @@ export namespace Shells {
   }
   export interface Pitch {
     pitchChannels: Array<any>,
+    pitchVizHeight: number,
     pitches: Array<number>,
     octaves: number,
     octaveHeight: number,
@@ -26,6 +26,7 @@ export namespace Shells {
     barWidth: number,
     beatWidth: number
     tickWidth: number,
+    ticksPerBar: number,
     weight: number
   }
 
