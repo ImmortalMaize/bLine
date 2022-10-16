@@ -1,4 +1,4 @@
 import {registerRoot} from 'remotion';
-import {RemotionVideo} from './Video';
+import RemotionVideo from './components/Video';
 
 registerRoot(RemotionVideo);

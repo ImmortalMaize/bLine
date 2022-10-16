@@ -1,0 +1,252 @@
+{
+	"name": "Unnamed",
+	"format": "BeepBox",
+	"version": 5,
+	"scale": "Free",
+	"key": "C",
+	"introBars": 0,
+	"loopBars": 2,
+	"beatsPerBar": 8,
+	"ticksPerBeat": 4,
+	"beatsPerMinute": 150,
+	"reverb": 0,
+	"masterGain": 1,
+	"compressionThreshold": 1,
+	"limitThreshold": 1,
+	"limitDecay": 4,
+	"limitRise": 4000,
+	"limitRatio": 1,
+	"compressionRatio": 1,
+	"layeredInstruments": false,
+	"patternInstruments": false,
+	"channels": [
+		{
+			"type": "pitch",
+			"name": "",
+			"instruments": [
+				{
+					"type": "harmonics",
+					"volume": 0,
+					"eqFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 2828.43,
+							"linearGain": 2
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 1189.21,
+							"linearGain": 5.6569
+						},
+						{
+							"type": "high-pass",
+							"cutoffHz": 707.11,
+							"linearGain": 2.8284
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 2000,
+							"linearGain": 0.0884
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 840.9,
+							"linearGain": 0.25
+						}
+					],
+					"eqFilterType": false,
+					"eqSimpleCut": 10,
+					"eqSimplePeak": 0,
+					"preset": 643,
+					"eqSubFilters0": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 2828.43,
+							"linearGain": 2
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 1189.21,
+							"linearGain": 5.6569
+						},
+						{
+							"type": "high-pass",
+							"cutoffHz": 707.11,
+							"linearGain": 2.8284
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 2000,
+							"linearGain": 0.0884
+						},
+						{
+							"type": "peak",
+							"cutoffHz": 840.9,
+							"linearGain": 0.25
+						}
+					],
+					"effects": [
+						"panning",
+						"vibrato",
+						"reverb"
+					],
+					"vibrato": "shaky",
+					"vibratoDepth": 0.1,
+					"vibratoDelay": 0,
+					"vibratoSpeed": 10,
+					"vibratoType": 1,
+					"pan": 0,
+					"panDelay": 10,
+					"reverb": 32,
+					"fadeInSeconds": 0.0413,
+					"fadeOutTicks": 12,
+					"harmonics": [
+						86,
+						100,
+						86,
+						43,
+						14,
+						14,
+						57,
+						71,
+						57,
+						14,
+						14,
+						14,
+						14,
+						14,
+						43,
+						57,
+						43,
+						14,
+						14,
+						14,
+						14,
+						14,
+						14,
+						14,
+						0,
+						0,
+						0,
+						0
+					],
+					"unison": "none",
+					"envelopes": []
+				}
+			],
+			"patterns": [
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				}
+			],
+			"sequence": [
+				0,
+				0
+			],
+			"octaveScrollBar": 2
+		},
+		{
+			"type": "mod",
+			"name": "",
+			"instruments": [
+				{
+					"type": "mod",
+					"volume": 0,
+					"eqFilter": [],
+					"eqFilterType": false,
+					"eqSimpleCut": 10,
+					"eqSimplePeak": 0,
+					"preset": 0,
+					"eqSubFilters0": [],
+					"effects": [],
+					"fadeInSeconds": 0,
+					"fadeOutTicks": -1,
+					"modChannels": [
+						-1,
+						-2,
+						-2,
+						-2,
+						-2,
+						-2
+					],
+					"modInstruments": [
+						0,
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					"modSettings": [
+						2,
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					"modStatuses": [],
+					"envelopes": []
+				}
+			],
+			"patterns": [
+				{
+					"notes": [
+						{
+							"pitches": [
+								5
+							],
+							"points": [
+								{
+									"tick": 0,
+									"pitchBend": 0,
+									"volume": 290,
+									"forMod": true
+								},
+								{
+									"tick": 32,
+									"pitchBend": 0,
+									"volume": 0,
+									"forMod": true
+								}
+							],
+							"continuesLastPattern": false
+						}
+					]
+				},
+				{
+					"notes": [
+						{
+							"pitches": [
+								5
+							],
+							"points": [
+								{
+									"tick": 0,
+									"pitchBend": 0,
+									"volume": 0,
+									"forMod": true
+								},
+								{
+									"tick": 32,
+									"pitchBend": 0,
+									"volume": 290,
+									"forMod": true
+								}
+							],
+							"continuesLastPattern": false
+						}
+					]
+				}
+			],
+			"sequence": [
+				2,
+				1
+			],
+			"octaveScrollBar": -1
+		}
+	]
+}

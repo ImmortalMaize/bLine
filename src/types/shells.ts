@@ -1,8 +1,9 @@
 import { Scale } from "chroma-js";
+import Song from "./Song";
 
-export namespace Shells {
+module Shells {
   export interface Settings {
-    beep: any,
+    beep: Song.Data,
     width: number,
     duration: number,
     frame: number,
@@ -11,15 +12,21 @@ export namespace Shells {
     colors: Scale
   }
   export interface Pitch {
-    pitchChannels: Array<any>,
+    pitchChannels: Array<Song.PitchChannel>,
     pitchVizHeight: number,
     pitches: Array<number>,
     octaves: number,
     octaveHeight: number,
     keyHeight: number,
-    min: number
+    min: number,
+    matrixPitches: [number, number][],
+    layeredChannels: Array<Song.PitchChannel>
   }
-
+  export interface Drums {
+    drumVizHeight: number,
+    drumChannels: Array<Song.DrumChannel>,
+    layeredChannels: Array<Song.DrumChannel>
+  }
   export interface Distance {
     bars: number
     barsOnFrame: number,
@@ -35,6 +42,10 @@ export namespace Shells {
     beatsPerMinute: number,
     framesPerMinute: number,
     framesPerBar: number,
+    framesPerBeat: number,
+    barsPerFrame: number,
     framesPerTick: number,
   }
 }
+
+export default Shells
